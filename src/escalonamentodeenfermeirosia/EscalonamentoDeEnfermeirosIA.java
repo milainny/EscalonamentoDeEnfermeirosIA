@@ -17,11 +17,11 @@ public class EscalonamentoDeEnfermeirosIA {
      */
     public static void main(String[] args) throws IOException {
         LeitorProblemaNSP leitor = new LeitorProblemaNSP();
-        ProblemaNSP problema = leitor.ler("C:\\Users\\Lailla\\Documents\\NetBeansProjects\\nsplib\\trunk\\NspLib\\instancias\\N25\\1.nsp");
-       // problema.exibeInformacoes();
+        ProblemaNSP problema = leitor.ler("D:\\Google Drive\\NspLib\\NSPLib\\N25\\1.nsp");
+        //problema.exibeInformacoes();
         LeitorRestricoesNSP leitorRestricoes = new LeitorRestricoesNSP();
-        RestricoesNSP restricoes = leitorRestricoes.ler("C:\\Users\\Lailla\\Documents\\NetBeansProjects\\nsplib\\trunk\\NspLib\\instancias\\Cases\\1.gen");
-        restricoes.exibeInformacoes();
+        RestricoesNSP restricoes = leitorRestricoes.ler("D:\\Google Drive\\NspLib\\NSPLib\\Cases\\1.gen");
+        //restricoes.exibeInformacoes();
     }
     
 }
