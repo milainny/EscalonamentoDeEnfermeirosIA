@@ -15,13 +15,16 @@ public class EscalonamentoDeEnfermeirosIA {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {        
         LeitorProblemaNSP leitor = new LeitorProblemaNSP();
         ProblemaNSP problema = leitor.ler("D:\\Google Drive\\NspLib\\NSPLib\\N25\\1.nsp");
         //problema.exibeInformacoes();
         LeitorRestricoesNSP leitorRestricoes = new LeitorRestricoesNSP();
         RestricoesNSP restricoes = leitorRestricoes.ler("D:\\Google Drive\\NspLib\\NSPLib\\Cases\\1.gen");
         //restricoes.exibeInformacoes();
+        int solucao[][];
+        solucao = new int[problema.getNumeroDeEnfermeiros()][problema.getNumeroDeDias()];
+        System.out.println("Tamanho da solução: "+solucao.length+" x "+solucao[0].length);
     }
     
 }
