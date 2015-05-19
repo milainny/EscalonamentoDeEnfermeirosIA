@@ -26,9 +26,9 @@ public class EscalonamentoDeEnfermeirosIA {
         //RestricoesNSP restricoes = leitorRestricoes.ler("D:\\Google Drive\\NspLib\\NSPLib\\Cases\\1.gen");
         //RestricoesNSP restricoes = leitorRestricoes.ler("/home/lailla/NetBeansProjects/Instancias/1.gen");
         //restricoes.exibeInformacoes();
-        int solucao[][];
-        solucao = new int[problema.getNumeroDeEnfermeiros()][problema.getNumeroDeDias()];
-        System.out.println("Tamanho da solução: "+solucao.length+" x "+solucao[0].length);
+        new buscaInformada.BuscaInformada().resolve(problema);
+        new algoritmoGenetico.AlgoritmoGenetico().resolve(problema, restricoes);
+        new PCR.PCR().resolve(problema, restricoes);
     }
     
 }
