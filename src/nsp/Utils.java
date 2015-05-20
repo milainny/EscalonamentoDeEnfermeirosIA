@@ -6,6 +6,16 @@ import java.io.IOException;
 import java.util.Random;
 
 public class Utils {
+    public static int[][] copiaProfunda(int[][] origem) {
+        int destino[][] = new int[origem.length][origem[0].length];
+        for (int i = 0; i < origem.length; i++) {
+            for (int j = 0; j < origem[i].length; j++) {
+                destino[i][j] = origem[i][j];
+            }
+        }
+        return destino;
+    }
+    
     public static String lerArquivo(String caminho) throws IOException {
         BufferedReader br = criarBufferedReader(caminho);
         StringBuilder sb = new StringBuilder();
