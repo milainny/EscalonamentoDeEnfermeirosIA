@@ -5,6 +5,7 @@
  */
 package algoritmoGenetico;
 
+import nsp.Solucao;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;

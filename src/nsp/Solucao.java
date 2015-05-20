@@ -1,4 +1,4 @@
-package algoritmoGenetico;
+package nsp;
 
 public class Solucao {
     private int[][] solucao;
