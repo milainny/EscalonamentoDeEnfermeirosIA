@@ -19,7 +19,7 @@ public class EscalonamentoDeEnfermeirosIA {
         LeitorProblemaNSP leitor = new LeitorProblemaNSP();
         //ProblemaNSP problema = leitor.ler("C:\\Users\\Filipe Genu\\Desktop\\Instancias\\1.nsp");
         //ProblemaNSP problema = leitor.ler("D:\\Google Drive\\NspLib\\NSPLib\\N25\\1.nsp");
-        //ProblemaNSP problema = leitor.ler("/home/lailla/NetBeansProjects/Instancias/1.nsp");
+        //ProblemaNSP problema = leitor.ler("/home/lailla/NetBeansProjects/Instancias/122.nsp");
         //problema.exibeInformacoes();
         LeitorRestricoesNSP leitorRestricoes = new LeitorRestricoesNSP();
         //RestricoesNSP restricoes = leitorRestricoes.ler("C:\\Users\\Filipe Genu\\Desktop\\Instancias\\1.gen");
@@ -28,7 +28,7 @@ public class EscalonamentoDeEnfermeirosIA {
         //restricoes.exibeInformacoes();
         new buscaInformada.BuscaInformada().resolve(problema);
         new algoritmoGenetico.AlgoritmoGenetico().resolve(problema, restricoes);
-        new PCR.PCR().resolve(problema, restricoes);
+        new PSR.PSR().resolve(problema, restricoes);
     }
     
 }
