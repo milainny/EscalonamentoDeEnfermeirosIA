@@ -24,6 +24,10 @@ public class Solucao implements Comparable<Solucao>{
     public int getCusto() {
         return custo;
     }
+    
+    public void setCusto(int custo) {
+        this.custo = custo;
+    }
 
     public void imprime() {
         System.out.println("--- Imprimindo solução ---");
