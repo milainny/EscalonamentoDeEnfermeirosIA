@@ -19,6 +19,7 @@ public class Solucao implements Comparable<Solucao>{
     public void setSolucao(int[][] solucao) {
         this.solucao = solucao;
     }
+    
 
     public int getCusto() {
         return custo;

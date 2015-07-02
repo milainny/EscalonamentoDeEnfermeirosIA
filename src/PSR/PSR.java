@@ -15,7 +15,7 @@ public class PSR {
         int custo;
         custo = preencheSolucaoInicial(s, problema, demanda);
         custo += preencheRestoEnfermeiros(s, problema);
-        solucao.setCusto(custo);
+        //solucao.setCusto(custo);
         solucao.setSolucao(s);
         solucao.imprime();
         System.out.println("Custo Total -> "+solucao.getCusto());
