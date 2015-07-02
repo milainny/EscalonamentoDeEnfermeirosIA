@@ -7,7 +7,7 @@ import nsp.Utils;
 
 public class PSR {
 
-    public void resolve(ProblemaNSP problema, RestricoesNSP restricoes) {
+    public void resolve(ProblemaNSP problema) {
         int[][] demanda = copiaDemanda(problema.getDemanda());
         Solucao solucao = new Solucao(problema.getNumeroDeEnfermeiros(), problema.getNumeroDeDias());
         int[][] s = new int[problema.getNumeroDeEnfermeiros()][problema.getNumeroDeDias()];

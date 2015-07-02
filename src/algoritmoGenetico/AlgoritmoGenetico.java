@@ -28,7 +28,7 @@ public class AlgoritmoGenetico {
         this.tamPopulacao = tamPopulacao;
     }
 
-    public void resolve(ProblemaNSP problema, RestricoesNSP restricoes) {
+    public void resolve(ProblemaNSP problema) {
         ArrayList<Solucao> populacao = geraPopulacaoInicial(tamPopulacao, problema);
         int k = 0;
         while (convergencia > 0) {
