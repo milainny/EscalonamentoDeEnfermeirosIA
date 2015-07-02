@@ -18,8 +18,8 @@ public class EscalonamentoDeEnfermeirosIA {
     public static void main(String[] args) throws IOException {        
         LeitorProblemaNSP leitor = new LeitorProblemaNSP();
         //ProblemaNSP problema = leitor.ler("C:\\Users\\Filipe Genu\\Desktop\\Instancias\\1.nsp");
-        //ProblemaNSP problema = leitor.ler("instancias/instanciagrande.nsp");
-        //ProblemaNSP problema = leitor.ler("/home/lailla/NetBeansProjects/Instancias/1.nsp");
+        //ProblemaNSP problema = leitor.ler("D:\\Google Drive\\NspLib\\NSPLib\\problemaTeste.nsp");
+        //ProblemaNSP problema = leitor.ler("C:\\Users\\Lailla\\Documents\\NetBeansProjects\\Instancias\\instanciamedia.nsp");
         //problema.exibeInformacoes();
         LeitorRestricoesNSP leitorRestricoes = new LeitorRestricoesNSP();
         //RestricoesNSP restricoes = leitorRestricoes.ler("C:\\Users\\Filipe Genu\\Desktop\\Instancias\\1.gen");
