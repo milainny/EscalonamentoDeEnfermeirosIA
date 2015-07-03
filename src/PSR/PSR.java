@@ -30,7 +30,7 @@ public class PSR {
         int enf = 0;
         int custo = 0;
         int menorPreferencia = 1;
-        while (true) {
+        while (menorPreferencia < 5) {
             for (Enfermeiro e : problema.getEnfermeiros()) {
                 for (int i = 0; i < problema.getNumeroDeDias(); i++) {
                     for (int j = 0; j < problema.getNumeroDeTurnos(); j++) {
@@ -42,13 +42,16 @@ public class PSR {
                             }
                         }
                     }
-
                 }
                 enf++;
             }
             if (verificaSeDemandaAtendida(demanda)) {
                 break;
             } else {
+                if (menorPreferencia == 4){
+                    System.out.println("ATENÇÃO - Solução Invalida - Demanda não atendida!");
+                    break;
+                }
                 menorPreferencia++;
                 enf = 0;
             }
@@ -83,11 +86,11 @@ public class PSR {
         int custo = 0;
         for (Enfermeiro e : problema.getEnfermeiros()) {
             for (int i = 0; i < problema.getNumeroDeDias(); i++) {
-                for (int j = 0; j < problema.getNumeroDeTurnos(); j++) {
+               // for (int j = 0; j < problema.getNumeroDeTurnos(); j++) {
                     if ((s[enf][i]) == -1) {
                         s[enf][i] = e.getMenorPreferenciaDia(i, problema.getNumeroDeTurnos()) + 1;
                         custo = custo + e.getPreferencia(i, s[enf][i]);
-                    }
+                 //   }
 
                 }
 
