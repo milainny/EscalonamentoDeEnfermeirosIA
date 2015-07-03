@@ -10,12 +10,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import nsp.ProblemaNSP;
-import nsp.RestricoesNSP;
 
-/**
- *
- * @author Filipe Genu
- */
 public class AlgoritmoGenetico {
 
     private int convergencia;
@@ -28,9 +23,8 @@ public class AlgoritmoGenetico {
         this.tamPopulacao = tamPopulacao;
     }
 
-    public void resolve(ProblemaNSP problema) {
+    public Solucao resolve(ProblemaNSP problema) {
         ArrayList<Solucao> populacao = geraPopulacaoInicial(tamPopulacao, problema);
-        int k = 0;
         while (convergencia > 0) {
             Collections.sort(populacao);
             int posicaoPais[] = escolhePais(populacao);
@@ -43,22 +37,20 @@ public class AlgoritmoGenetico {
             } else {
                 convergencia = 100;
             }
-            //verificaDiversidadePopulacao(populacao);
         }
         Collections.sort(populacao);
-        populacao.get(0).imprime();
+        return populacao.get(0);
     }
 
     private ArrayList<Solucao> geraPopulacaoInicial(int tamPopulacao, ProblemaNSP problema) {
         ArrayList<Solucao> populacao = new ArrayList<>();
-        int matrizDeControle[][] = nsp.Utils.copiaProfunda(problema.getDemanda());
         for (int i = 0; i < tamPopulacao; i++) {
-            populacao.add(criaSolucaoValida(problema, matrizDeControle));
+            populacao.add(criaSolucaoValida(problema));
         }
         return populacao;
     }
 
-    private Solucao criaSolucaoValida(ProblemaNSP problema, int[][] matrizDecontrole) {
+    private Solucao criaSolucaoValida(ProblemaNSP problema) {
         Solucao solucao = new Solucao(problema.getNumeroDeEnfermeiros(), problema.getNumeroDeDias());
         int matrizDaSolucao[][] = new int[problema.getNumeroDeEnfermeiros()][problema.getNumeroDeDias()];
         for (int coluna = 0; coluna < problema.getNumeroDeDias(); coluna++) {
@@ -140,18 +132,6 @@ public class AlgoritmoGenetico {
         return false;
     }
 
-    private void verificaDiversidadePopulacao(ArrayList<Solucao> populacao) {
-        for (int i = 0; i < populacao.get(0).getSolucao().length; i++) {
-            for (int j = 0; j < populacao.get(0).getSolucao()[0].length; j++) {
-                if (populacao.get(0).getSolucao()[i][j] != populacao.get(1).getSolucao()[i][j]) {
-                    System.out.println("DIVERSIDADE");
-                    return;
-                }
-            }
-
-        }
-    }
-
     private int[] escolhePais(ArrayList<Solucao> populacao) {
         /*
          A escolha dos pais ocorre pelo método da roleta
@@ -190,7 +170,7 @@ public class AlgoritmoGenetico {
         Random r = new Random();
         double taxa = r.nextDouble() * 100;
         if (taxa < this.taxaMutacao) {
-            this.taxaMutacao -= 0.5;
+            this.taxaMutacao -= 0.1;
             return true;
         }
         return false;

@@ -12,9 +12,9 @@ import java.util.Random;
 public class Utils {
 
     public static void main(String[] args) throws FileNotFoundException {
-        String caminho = "instancias/instanciagrande.nsp";
-        int numeroEnfermeiros = 50000;
-        int numeroDias = 300;
+        String caminho = "instancias/e25000.nsp";
+        int numeroEnfermeiros = 25000;
+        int numeroDias = 60;
         int numeroTurnos = 4;
         geraArquivoProblema(caminho, numeroEnfermeiros, numeroDias, numeroTurnos);
     }

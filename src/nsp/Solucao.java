@@ -30,15 +30,14 @@ public class Solucao implements Comparable<Solucao>{
     }
 
     public void imprime() {
-        System.out.println("--- Imprimindo solução ---");
+        System.out.println("--- SOLUÇÃO (Enfermeiros x Dia) ---");
         for (int i = 0; i < solucao.length; i++) {
-            System.out.print("[ ");
             for (int j = 0; j < solucao[0].length; j++) {
-                System.out.print(this.solucao[i][j] + " ");
+                System.out.print(this.solucao[i][j] + "\t");
             }
-            System.out.println("]");
+            System.out.println("");
         }
-        System.out.println("custo: "+this.custo);
+        System.out.println("\ncusto total: "+this.custo);
     }
 
     public void calculaCusto(ArrayList<Enfermeiro> enfermeiros) {
