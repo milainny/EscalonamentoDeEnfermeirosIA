@@ -7,7 +7,7 @@ import nsp.Utils;
 
 public class PSR {
 
-    public void resolve(ProblemaNSP problema) {
+    public Solucao resolve(ProblemaNSP problema) {
         int[][] demanda = copiaDemanda(problema.getDemanda());
         Solucao solucao = new Solucao(problema.getNumeroDeEnfermeiros(), problema.getNumeroDeDias());
         int[][] s = new int[problema.getNumeroDeEnfermeiros()][problema.getNumeroDeDias()];
@@ -17,8 +17,7 @@ public class PSR {
         custo += preencheRestoEnfermeiros(s, problema);
         solucao.setCusto(custo);
         solucao.setSolucao(s);
-        solucao.imprime();
-        System.out.println("Custo Total -> "+solucao.getCusto());
+        return solucao;
     }
 
     private int[][] copiaDemanda(int[][] demanda) {

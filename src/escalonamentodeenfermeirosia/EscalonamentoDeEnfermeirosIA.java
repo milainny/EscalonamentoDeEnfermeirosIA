@@ -62,7 +62,7 @@ public class EscalonamentoDeEnfermeirosIA {
                 infoAlgoritmo+="PSR";
                 cronometro.inicia();
                 problema = leitor.ler(caminhoEntrada);
-                //new PSR.PSR().resolve(problema);
+                solucao = new PSR.PSR().resolve(problema);
                 break;
         }
         cronometro.para();
