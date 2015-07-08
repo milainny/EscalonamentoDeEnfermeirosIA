@@ -28,6 +28,10 @@ public class Solucao implements Comparable<Solucao>{
     public void setCusto(int custo) {
         this.custo = custo;
     }
+    
+    public void insereAtribuicao(int linha, int coluna, int atribuicao){
+        this.solucao[linha][coluna] = atribuicao;
+    }
 
     public void imprime() {
         System.out.println("--- SOLUÇÃO (Enfermeiros x Dia) ---");
@@ -35,7 +39,7 @@ public class Solucao implements Comparable<Solucao>{
         System.out.println("");
         for (int i = 0; i < solucao.length; i++) {
             for (int j = 0; j < solucao[0].length; j++) {
-                System.out.print(this.solucao[i][j] + "\t");
+                System.out.print(++this.solucao[i][j] + "\t");
             }
             System.out.println("");
         }

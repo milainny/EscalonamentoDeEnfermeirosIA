@@ -42,7 +42,7 @@ public class EscalonamentoDeEnfermeirosIA {
                 System.out.println("Aguarde, executando algoritmo...");
                 cronometro.inicia();
                 problema = leitor.ler(caminhoEntrada);
-                //solucao = new buscaInformada.BuscaInformada().resolve(problema);
+                solucao = new buscaInformada.BuscaInformada().resolve(problema);
                 break;
             case 2:
                 System.out.print("Informe a convergencia=> ");

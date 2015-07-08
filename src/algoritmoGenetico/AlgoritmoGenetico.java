@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package algoritmoGenetico;
 
 import nsp.Solucao;
@@ -24,8 +19,9 @@ public class AlgoritmoGenetico {
     }
 
     public Solucao resolve(ProblemaNSP problema) {
+        int convergenciaInicial = this.convergencia;
         ArrayList<Solucao> populacao = geraPopulacaoInicial(tamPopulacao, problema);
-        while (convergencia > 0) {
+        while (this.convergencia > 0) {
             Collections.sort(populacao);
             int posicaoPais[] = escolhePais(populacao);
             ArrayList<Solucao> filhos = crossOver(posicaoPais, populacao, problema);
@@ -33,9 +29,9 @@ public class AlgoritmoGenetico {
                 realizaMutacao(filhos, problema);
             }
             if (!atualizaPopulacao(filhos, populacao)) {
-                convergencia--;
+                this.convergencia--;
             } else {
-                convergencia = 100;
+                this.convergencia = convergenciaInicial;
             }
         }
         Collections.sort(populacao);
@@ -86,7 +82,7 @@ public class AlgoritmoGenetico {
 
     private ArrayList<Solucao> crossOver(int[] posicaoPais, ArrayList<Solucao> populacao, ProblemaNSP problema) {
         Random rd = new Random();
-        int corte = rd.nextInt(problema.getNumeroDeEnfermeiros());
+        int corte = rd.nextInt(problema.getNumeroDeDias());
         if (corte == 0) { //se o corte for 0, significa que os um filho será identico ao pai
             corte = 1;
         }
@@ -94,7 +90,7 @@ public class AlgoritmoGenetico {
         int m2[][] = new int[problema.getNumeroDeEnfermeiros()][problema.getNumeroDeDias()];
         for (int i = 0; i < problema.getNumeroDeEnfermeiros(); i++) {
             for (int j = 0; j < problema.getNumeroDeDias(); j++) {
-                if (i < corte) {
+                if (j < corte) {
                     m1[i][j] = populacao.get(posicaoPais[0]).getSolucao()[i][j];
                     m2[i][j] = populacao.get(posicaoPais[1]).getSolucao()[i][j];
                 } else {
@@ -136,17 +132,32 @@ public class AlgoritmoGenetico {
         /*
          A escolha dos pais ocorre pelo método da roleta
          */
-        double TotalCustoPop = 0;
+        double totalCustoPop = 0;
         double SomaAcumulada = 0;
         int posicaoPais[] = new int[2];
+        
+        /*
+            Calculando a função fitness:
+            - primeiro calcula-se a soma total dos custos;
+            - depois, calcula-se a aptidão de cada individuo, inversamente proporcional
+            ao seu custo, já que o PEE é um problema de minimização.
+        */
         for (Solucao s : populacao) {
-            TotalCustoPop += s.getCusto();
+            totalCustoPop += s.getCusto();
         }
+        
+        double fitnessPopulacao[] = new double[populacao.size()];
+        for (int i = 0; i < fitnessPopulacao.length; i++) {
+            fitnessPopulacao[i] = totalCustoPop - populacao.get(i).getCusto();
+        }
+        
+        /*Fim do calculo da função Fitness*/
+        
         Random r = new Random();
         double sorteado = r.nextDouble();
         for (int i = 0; i < populacao.size(); i++) {
-            SomaAcumulada += populacao.get(i).getCusto();
-            if (sorteado <= (SomaAcumulada / TotalCustoPop)) {
+            SomaAcumulada += fitnessPopulacao[i];
+            if (sorteado <= (SomaAcumulada / totalCustoPop)) {
                 posicaoPais[0] = i;
                 break;
             }
@@ -155,9 +166,8 @@ public class AlgoritmoGenetico {
             SomaAcumulada = 0;
             sorteado = r.nextDouble();
             for (int i = 0; i < populacao.size(); i++) {
-                SomaAcumulada += populacao.get(i).getCusto();
-                if (sorteado <= (SomaAcumulada / TotalCustoPop)) {
-                    //System.out.println("p0: "+posicaoPais[0]+" /p1: "+i);
+                SomaAcumulada += fitnessPopulacao[i];
+                if (sorteado <= (SomaAcumulada / totalCustoPop)) {
                     posicaoPais[1] = i;
                     break;
                 }
@@ -179,15 +189,15 @@ public class AlgoritmoGenetico {
     private void realizaMutacao(ArrayList<Solucao> filhos, ProblemaNSP problema) {
         Random rd = new Random();
         for (int i = 0; i < filhos.size(); i++) {
-            int linha1 = rd.nextInt(problema.getNumeroDeEnfermeiros());
-            int linha2;
+            int coluna1 = rd.nextInt(problema.getNumeroDeDias());
+            int coluna2;
             do {
-                linha2 = rd.nextInt(problema.getNumeroDeEnfermeiros());
-            } while (linha1 == linha2);
-            for (int col = 0; col < filhos.get(i).getSolucao()[0].length; col++) {
-                int aux = filhos.get(i).getSolucao()[linha1][col];
-                filhos.get(i).getSolucao()[linha1][col] = filhos.get(i).getSolucao()[linha2][col];
-                filhos.get(i).getSolucao()[linha2][col] = aux;
+                coluna2 = rd.nextInt(problema.getNumeroDeDias());
+            } while (coluna1 == coluna2);
+            for (int lin = 0; lin < filhos.get(i).getSolucao().length; lin++) {
+                int aux = filhos.get(i).getSolucao()[lin][coluna1];
+                filhos.get(i).getSolucao()[lin][coluna1] = filhos.get(i).getSolucao()[lin][coluna2];
+                filhos.get(i).getSolucao()[lin][coluna2] = aux;
             }
             filhos.get(i).calculaCusto(problema.getEnfermeiros());
         }

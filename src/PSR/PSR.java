@@ -1,7 +1,6 @@
 package PSR;
 import nsp.Enfermeiro;
 import nsp.ProblemaNSP;
-import nsp.RestricoesNSP;
 import nsp.Solucao;
 import nsp.Utils;
 
@@ -57,7 +56,6 @@ public class PSR {
 
         }
         return custo;
-        //imprimeDemandaRestante(demanda);
     }
 
     private int[][] inicializaSolucao(int[][] s) {
@@ -71,28 +69,15 @@ public class PSR {
         return s;
     }
 
-    private void imprimeDemandaRestante(int[][] demanda) {
-        for (int i = 0; i < demanda.length; i++) {
-            for (int j = 0; j < demanda[0].length; j++) {
-                System.out.print(demanda[i][j]);
-            }
-            System.out.println("\n");
-        }
-    }
-
     private int preencheRestoEnfermeiros(int[][] s, ProblemaNSP problema) {
         int enf = 0;
         int custo = 0;
         for (Enfermeiro e : problema.getEnfermeiros()) {
             for (int i = 0; i < problema.getNumeroDeDias(); i++) {
-               // for (int j = 0; j < problema.getNumeroDeTurnos(); j++) {
                     if ((s[enf][i]) == -1) {
                         s[enf][i] = e.getMenorPreferenciaDia(i, problema.getNumeroDeTurnos()) + 1;
                         custo = custo + e.getPreferencia(i, s[enf][i]);
-                 //   }
-
                 }
-
             }
             enf++;
         }
